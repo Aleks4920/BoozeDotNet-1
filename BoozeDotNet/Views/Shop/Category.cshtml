@@ -6,8 +6,20 @@
 
 <h1>You are shopping for @ViewData["CategoryName"]</h1>
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-controller="Shop" asp-action="Index">Shop</a>
+        </li>
+        <li class="breadcrumb-item active">
+            @ViewData["CategoryName"]
+        </li>
+    </ol>
+</nav>
+
 <ul>
-    @foreach (var product in Model) {
+    @foreach (var product in Model)
+    {
         <li>@product.Name</li>
     }
 </ul>

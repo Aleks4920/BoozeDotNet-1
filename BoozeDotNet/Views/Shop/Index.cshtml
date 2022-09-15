@@ -4,14 +4,41 @@
 
 <h1>Shop our Store</h1>
 
-<ul>
-    <li>
-        <a asp-controller="Shop" asp-action="Category" asp-route-categoryName="Beer">Beer</a>
-    </li>
-    <li>
-        <a asp-controller="Shop" asp-action="Category" asp-route-CategoryName="Wine">Wine</a>
-    </li>
-    <li>
-        <a asp-controller="Shop" asp-action="Category" asp-route-CategoryName="Tequila">Tequila</a>
-    </li>
-</ul>
+<section class="row card-group">
+    <div class="col-lg-4 mb-3">
+        <div class="card mb-4">
+            <div class="card-body text-center h-100">
+                <a asp-controller="Shop" asp-action="Category" asp-route-categoryName="Beer" class="btn btn-secondary">Beer</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-4 mb-3">
+        <div class="card mb-4">
+            <div class="card-body text-center h-100">
+                <a asp-controller="Shop" asp-action="Category" asp-route-CategoryName="Wine" class="btn btn-secondary">Wine</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-3">
+        <div class="card mb-4">
+            <div class="card-body text-center h-100">
+                <a asp-controller="Shop" asp-action="Category" asp-route-CategoryName="Tequila" class="btn btn-secondary">Tequila</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-3">
+        <div class="card mb-4">
+            <div class="card-body text-center h-100">
+                <a asp-controller="Shop" asp-action="Category" asp-route-CategoryName="Cider" class="btn btn-secondary">Cider</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 mb-3">
+        <div class="card mb-4">
+            <div class="card-body text-center h-100">
+                <a asp-controller="Shop" asp-action="Category" asp-route-CategoryName="Whiskey" class="btn btn-secondary">Whiskey</a>
+            </div>
+        </div>
+    </div>
+</section>
