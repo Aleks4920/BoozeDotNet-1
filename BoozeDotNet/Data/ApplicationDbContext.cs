@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using BoozeDotNet.Models;
 
 namespace BoozeDotNet.Data
 {
@@ -9,5 +10,6 @@ namespace BoozeDotNet.Data
             : base(options)
         {
         }
+        public DbSet<BoozeDotNet.Models.Product> Product { get; set; }
     }
 }
