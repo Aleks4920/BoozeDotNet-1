@@ -22,7 +22,8 @@ namespace BoozeDotNet.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Product.ToListAsync());
+            var applicationDbContext = _context.Product.Include(p => p.Category);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -34,6 +35,7 @@ namespace BoozeDotNet.Controllers
             }
 
             var product = await _context.Product
+                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
@@ -46,6 +48,7 @@ namespace BoozeDotNet.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace BoozeDotNet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,Name,Price,Description")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,Name,Price,Description,Photo,CategoryId")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace BoozeDotNet.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -78,6 +82,7 @@ namespace BoozeDotNet.Controllers
             {
                 return NotFound();
             }
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -86,7 +91,7 @@ namespace BoozeDotNet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Price,Description")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Price,Description,Photo,CategoryId")] Product product)
         {
             if (id != product.ProductId)
             {
@@ -113,6 +118,7 @@ namespace BoozeDotNet.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -125,6 +131,7 @@ namespace BoozeDotNet.Controllers
             }
 
             var product = await _context.Product
+                .Include(p => p.Category)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {

@@ -11,5 +11,6 @@ namespace BoozeDotNet.Data
         {
         }
         public DbSet<BoozeDotNet.Models.Product> Product { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

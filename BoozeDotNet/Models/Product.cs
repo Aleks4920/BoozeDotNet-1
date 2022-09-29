@@ -15,5 +15,13 @@ namespace BoozeDotNet.Models
 
         [MaxLength(4000)]
         public string? Description { get; set; }
+
+        public string? Photo { get; set; }
+
+        // FK for Parent Category
+        public int CategoryId { get; set; }
+
+        // Parent ref for auto-joins
+        public Category? Category { get; set; }
     }
 }
