@@ -4,6 +4,7 @@ using BoozeDotNet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BoozeDotNet.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220929135051_AddCategoryWithProductRelationship")]
+    partial class AddCategoryWithProductRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +50,7 @@ namespace BoozeDotNet.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Categoryid")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -68,7 +70,7 @@ namespace BoozeDotNet.Data.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("Categoryid");
 
                     b.ToTable("Product");
                 });
@@ -279,7 +281,7 @@ namespace BoozeDotNet.Data.Migrations
                 {
                     b.HasOne("BoozeDotNet.Models.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("Categoryid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
